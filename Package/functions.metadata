@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Function1",
+    "scriptFile": "DurableFunctionDemo.dll",
+    "entryPoint": "DurableFunctionDemo.Function1.RunOrchestrator",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "context",
+        "direction": "In",
+        "type": "orchestrationTrigger",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "SayHello",
+    "scriptFile": "DurableFunctionDemo.dll",
+    "entryPoint": "DurableFunctionDemo.Function1.SayHello",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "name",
+        "direction": "In",
+        "type": "activityTrigger",
+        "dataType": "String",
+        "properties": {}
+      }
+    ]
+  },
+  {
+    "name": "Function1_HttpStart",
+    "scriptFile": "DurableFunctionDemo.dll",
+    "entryPoint": "DurableFunctionDemo.Function1.HttpStart",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "req",
+        "direction": "In",
+        "type": "httpTrigger",
+        "authLevel": "Anonymous",
+        "methods": [
+          "get",
+          "post"
+        ],
+        "properties": {}
+      },
+      {
+        "name": "client",
+        "direction": "In",
+        "type": "durableClient",
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "type": "http",
+        "direction": "Out"
+      }
+    ]
+  }
+]
